@@ -16,14 +16,12 @@ def compute(s: str) -> int:
     lines = s.splitlines()
     for line in lines:
         elf1 = line.split(',')[0].split('-')
+        elf1_set = set(range(int(elf1[0]), int(elf1[1])+1))
         elf2 = line.split(',')[1].split('-')
-        if int(elf1[0]) >= int(elf2[0]) and int(elf1[1]) <= int(elf2[1]):
-            print('a')
-            print(elf1, elf2)
+        elf2_set = set(range(int(elf2[0]), int(elf2[1])+1))
+        if elf1_set.issubset(elf2_set):
             assignment_count += 1
-        elif int(elf2[0]) >= int(elf1[0]) and int(elf2[1]) <= int(elf1[1]):
-            print('b')
-            print(elf1, elf2)
+        elif elf2_set.issubset(elf1_set):
             assignment_count += 1
     return assignment_count
 
